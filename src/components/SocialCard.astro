@@ -1,0 +1,32 @@
+---
+export interface Props {
+  platform: string;
+  icon: string;
+  url: string;
+  username: string;
+}
+
+const { platform, icon, url, username } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  'github-logo': `<svg width="40" height="40" viewBox="0 0 256 256" fill="currentColor"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24h-24A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.88,43.88,0,0,1,32.32-20.06,43.81,43.81,0,0,1,.79,33.58,8.05,8.05,0,0,0,1,7.69A41.72,41.72,0,0,1,200,104Z"/></svg>`,
+  'twitter-logo': `<svg width="40" height="40" viewBox="0 0 256 256" fill="currentColor"><path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,50.79,63.55,28.79,29.74a8,8,0,0,0-14.63,4.06C18.91,85.33,43.52,120.49,65.91,141.31c-18.83,5.43-37.28,6.91-55.38.4a8,8,0,0,0-9.46,11.08C22.64,186.67,52,216,97.64,216c0,0,21.64-.25,36.14-4.36a8,8,0,0,0,5.22-5.81,97.83,97.83,0,0,0,3.23-27.68c0-1.06,0-2.11-.06-3.16l28.66-24.41A39.88,39.88,0,0,0,200,160V88A48.15,48.15,0,0,0,247.39,68.94ZM184,160a23.89,23.89,0,0,1-10.86,20.14L144,204.23V184a8,8,0,0,0-8-8c-15.59,0-28.69-4.32-39.56-13A95.79,95.79,0,0,0,126.38,160H184ZM184,80H168V88a8,8,0,0,0,16,0ZM88,88a31.88,31.88,0,0,1,9.28-22.63A30.82,30.82,0,0,1,120,56V80H88Z"/></svg>`,
+  'envelope': `<svg width="40" height="40" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"/></svg>`,
+};
+---
+
+<div class="bg-[var(--bg-card)] rounded-xl p-6 flex flex-col items-center text-center gap-3
+  hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+  <div class="text-[var(--text-primary)]" set:html={iconMap[icon] || iconMap['envelope']} />
+  <h3 class="text-base font-semibold text-[var(--text-primary)]">{platform}</h3>
+  <p class="text-sm text-[var(--text-secondary)]">{username}</p>
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mt-2 px-4 py-1.5 text-sm font-medium border border-[var(--border)] rounded-lg
+      text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-150"
+  >
+    访问
+  </a>
+</div>
