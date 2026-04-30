@@ -9,3 +9,13 @@ node_modules/
 # IDE
 .vscode/
 .idea/
+
+# AI tools
+.claude/
+.cursor/
+.superpower
+
+# Environment variables
+.env
+.env.local
+.env.*.local
