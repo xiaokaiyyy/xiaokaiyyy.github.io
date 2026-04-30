@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import SocialIcons from '../components/SocialIcons.astro';
+import SkillTags from '../components/SkillTags.astro';
+import Timeline from '../components/Timeline.astro';
+import Footer from '../components/Footer.astro';
+import profile from '../data/profile.json';
+---
+
+<Layout title={`${profile.name} - 个人主页`} description={profile.bio}>
+  <Navbar />
+
+  <main class="flex-1 pt-16">
+    <!-- Hero -->
+    <section class="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-4 text-center animate-fade-in-up">
+      <img
+        src={profile.avatar}
+        alt={profile.name}
+        class="w-[120px] h-[120px] rounded-full object-cover shadow-lg mb-6"
+        loading="eager"
+      />
+      <h1 class="text-[32px] font-bold text-[var(--text-primary)] tracking-tight mb-3">
+        {profile.name}
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-md">
+        {profile.bio}
+      </p>
+      <SocialIcons size={24} />
+    </section>
+
+    <!-- Skills -->
+    <SkillTags />
+
+    <!-- Timeline -->
+    <Timeline />
+  </main>
+
+  <Footer />
+</Layout>
