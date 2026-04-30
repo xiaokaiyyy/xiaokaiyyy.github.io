@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+
+@theme {
+  --color-cream-50: #fdf6e3;
+  --color-cream-100: #eee8d5;
+  --color-cream-200: #d4c5a9;
+  --color-coffee-500: #8b7355;
+  --color-coffee-700: #5b4636;
+  --color-accent: #d97706;
+  --color-accent-dark: #f59e0b;
+  --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #fdf6e3;
+    --bg-card: #eee8d5;
+    --text-primary: #5b4636;
+    --text-secondary: #8b7355;
+    --accent: #d97706;
+    --border: #d4c5a9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1c1917;
+      --bg-card: #292524;
+      --text-primary: #e7e5e4;
+      --text-secondary: #a8a29e;
+      --accent: #f59e0b;
+      --border: #44403c;
+    }
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
