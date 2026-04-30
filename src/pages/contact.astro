@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import SocialCard from '../components/SocialCard.astro';
+import profile from '../data/profile.json';
+import socials from '../data/socials.json';
+---
+
+<Layout title={`联系方式 - ${profile.name}`} description={`与 ${profile.name} 取得联系`}>
+  <Navbar />
+
+  <main class="flex-1 pt-16">
+    <div class="max-w-[800px] mx-auto px-4 sm:px-6 py-16">
+      <h1 class="text-2xl font-semibold text-[var(--text-primary)] text-center mb-12">联系我</h1>
+
+      <!-- 社交卡片网格 -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {socials.map(social => (
+          <SocialCard
+            platform={social.platform}
+            icon={social.icon}
+            url={social.url}
+            username={social.username}
+          />
+        ))}
+      </div>
+
+      <!-- 邮箱区域 -->
+      <div class="text-center">
+        <h2 class="text-lg font-medium text-[var(--text-primary)] mb-4">或者直接发邮件</h2>
+        <div class="inline-flex items-center gap-3 bg-[var(--bg-card)] rounded-xl px-6 py-3">
+          <span class="text-[var(--text-primary)] font-medium">{profile.email}</span>
+          <button
+            id="copy-email"
+            class="p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors duration-150"
+            aria-label="复制邮箱地址"
+          >
+            <svg width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="48" y="48" width="128" height="128" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+              <path d="M176,80h24a8,8,0,0,1,8,8V200a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V176" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast -->
+  <div
+    id="toast"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[var(--accent)] text-white px-6 py-3 rounded-lg shadow-lg
+      opacity-0 pointer-events-none transition-opacity duration-200"
+  >
+    已复制到剪贴板
+  </div>
+
+  <Footer />
+</Layout>
+
+<script>
+  const copyBtn = document.getElementById('copy-email');
+  const toast = document.getElementById('toast');
+
+  copyBtn?.addEventListener('click', async () => {
+    const email = copyBtn.previousElementSibling?.textContent;
+    if (email) {
+      await navigator.clipboard.writeText(email.trim());
+      toast?.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast?.classList.add('opacity-0', 'pointer-events-none');
+      }, 2000);
+    }
+  });
+</script>
