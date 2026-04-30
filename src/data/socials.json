@@ -1,0 +1,20 @@
+[
+  {
+    "platform": "GitHub",
+    "icon": "github-logo",
+    "url": "https://github.com/xiaokaiyyy",
+    "username": "xiaokaiyyy"
+  },
+  {
+    "platform": "Twitter",
+    "icon": "twitter-logo",
+    "url": "https://twitter.com/yourname",
+    "username": "@yourname"
+  },
+  {
+    "platform": "Email",
+    "icon": "envelope",
+    "url": "mailto:junkai.yang@example.com",
+    "username": "junkai.yang@example.com"
+  }
+]
