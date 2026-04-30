@@ -1,0 +1,11 @@
+# Astro / Node
+dist/
+node_modules/
+.astro/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,56 @@
+<h2>选择整体视觉风格方向</h2>
+<p class="subtitle">以下四种风格均基于 Astro 简洁响应式主题，你可以点击选择最符合你审美的一种或多种</p>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="minimal" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>极简黑白</h3>
+      <p>纯白/极浅灰背景，纯黑文字，大量留白，无多余装饰。强调排版和内容的纯粹感。参考：<code>AstroPaper</code> 主题。</p>
+      <div style="margin-top:8px;display:flex;gap:4px">
+        <span style="width:20px;height:20px;background:#fff;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#f5f5f5;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#111;display:inline-block;border-radius:4px"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="warm" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>温暖奶油</h3>
+      <p>暖白/奶油色背景，深棕或暗红文字，柔和亲切。适合希望主页有温度感的用户。参考：<code>Frosti</code> 主题。</p>
+      <div style="margin-top:8px;display:flex;gap:4px">
+        <span style="width:20px;height:20px;background:#fdf6e3;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#eee8d5;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#5b4636;display:inline-block;border-radius:4px"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="tech" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>深蓝科技</h3>
+      <p>深色背景（深蓝/深灰），亮色强调（青/蓝/紫），适合技术开发者身份。现代感强，夜间阅读舒适。参考：深色模式优先的 Astro 主题。</p>
+      <div style="margin-top:8px;display:flex;gap:4px">
+        <span style="width:20px;height:20px;background:#0d1117;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#161b22;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#58a6ff;display:inline-block;border-radius:4px"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="modern" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3>明亮现代</h3>
+      <p>白色背景配彩色渐变或品牌色强调，活泼现代。卡片式布局，圆角，微阴影。参考：<code>Astro Cactus</code> 主题。</p>
+      <div style="margin-top:8px;display:flex;gap:4px">
+        <span style="width:20px;height:20px;background:#ffffff;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#f3f4f6;border:1px solid #ccc;display:inline-block;border-radius:4px"></span>
+        <span style="width:20px;height:20px;background:#6366f1;display:inline-block;border-radius:4px"></span>
+      </div>
+    </div>
+  </div>
+</div>

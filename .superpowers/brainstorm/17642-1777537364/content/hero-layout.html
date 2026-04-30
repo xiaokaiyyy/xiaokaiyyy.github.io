@@ -1,0 +1,54 @@
+<h2>首页 Hero 区域布局</h2>
+<p class="subtitle">这是访客看到的第一个画面。选择你喜欢的头像和文字排版方式</p>
+
+<div class="options">
+  <div class="option" data-choice="center" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>居中堆叠</h3>
+      <p>头像在顶部居中，下面依次是姓名、一句话介绍、社交图标按钮，全部垂直居中。最简洁、最聚焦。</p>
+      <div class="mockup" style="margin-top:10px">
+        <div class="mockup-body" style="text-align:center">
+          <div style="width:60px;height:60px;border-radius:50%;background:#ddd;margin:0 auto 8px"></div>
+          <div style="font-weight:bold;font-size:14px">你的名字</div>
+          <div style="font-size:11px;color:#666;margin-top:4px">一句话个人介绍</div>
+          <div style="margin-top:8px;font-size:18px">○ ○ ○</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="split" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>左右分栏</h3>
+      <p>左侧是头像（较大），右侧是姓名、简介、社交图标。桌面端横向排列，移动端自动变为堆叠。更有设计感。</p>
+      <div class="mockup" style="margin-top:10px">
+        <div class="mockup-body" style="display:flex;align-items:center;gap:12px">
+          <div style="width:50px;height:50px;border-radius:50%;background:#ddd;flex-shrink:0"></div>
+          <div>
+            <div style="font-weight:bold;font-size:14px">你的名字</div>
+            <div style="font-size:11px;color:#666;margin-top:2px">一句话个人介绍</div>
+            <div style="margin-top:4px;font-size:14px">○ ○ ○</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="minimal" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>纯文字极简</h3>
+      <p>无头像，只有大号姓名的排版 + 简介 + 社交链接。让文字本身成为视觉焦点，适合不想放照片或追求极简的用户。</p>
+      <div class="mockup" style="margin-top:10px">
+        <div class="mockup-body">
+          <div style="font-weight:bold;font-size:20px">Hello,</div>
+          <div style="font-weight:bold;font-size:20px">I'm 你的名字</div>
+          <div style="font-size:11px;color:#666;margin-top:6px">一句话个人介绍</div>
+          <div style="margin-top:8px;font-size:14px">○ ○ ○</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
