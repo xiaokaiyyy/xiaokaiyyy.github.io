@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import profile from '../data/profile.json';
+---
+
+<Layout title={`关于我 - ${profile.name}`} description={`了解 ${profile.name} 的背景和技能`}>
+  <Navbar />
+
+  <main class="flex-1 pt-16">
+    <div class="max-w-[800px] mx-auto px-4 sm:px-6 py-16 space-y-16">
+      <!-- 个人故事 -->
+      <section>
+        <h1 class="text-2xl font-semibold text-[var(--text-primary)] mb-6">关于我</h1>
+        <div class="space-y-4 text-[var(--text-primary)] leading-relaxed">
+          <p>
+            你好！我是 {profile.name}，一名热爱技术的开发者。我对前端开发和全栈技术有着浓厚的兴趣，
+            喜欢探索新的工具和框架，致力于构建简洁、高效且用户友好的应用。
+          </p>
+          <p>
+            在空闲时间，我喜欢阅读技术博客、参与开源项目，以及尝试各种新奇的编程语言。
+            我相信持续学习和分享是技术成长的最佳方式。
+          </p>
+          <p>
+            如果你对我的项目感兴趣，或者想聊聊技术，欢迎通过联系方式页面与我取得联系。
+          </p>
+        </div>
+      </section>
+
+      <!-- 技能详情 -->
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">技能</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-[var(--bg-card)] rounded-xl p-5">
+            <h3 class="text-sm font-semibold text-[var(--text-secondary)] mb-3 uppercase tracking-wide">前端</h3>
+            <div class="flex flex-wrap gap-2">
+              {['JavaScript', 'TypeScript', 'React', 'Vue', 'Astro'].map(s => (
+                <span class="text-sm text-[var(--text-primary)]">{s}</span>
+              ))}
+            </div>
+          </div>
+          <div class="bg-[var(--bg-card)] rounded-xl p-5">
+            <h3 class="text-sm font-semibold text-[var(--text-secondary)] mb-3 uppercase tracking-wide">后端 & 工具</h3>
+            <div class="flex flex-wrap gap-2">
+              {['Node.js', 'Python', 'Docker', 'Git', 'Linux'].map(s => (
+                <span class="text-sm text-[var(--text-primary)]">{s}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
