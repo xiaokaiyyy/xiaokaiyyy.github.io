@@ -1,0 +1,87 @@
+---
+const navLinks = [
+  { href: '/', label: '首页' },
+  { href: '/about', label: '关于我' },
+  { href: '/contact', label: '联系方式' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-200">
+  <div class="max-w-[800px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <a href="/" class="text-lg font-bold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">
+      JK
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="hidden sm:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`text-sm font-medium transition-colors hover:text-[var(--accent)] ${
+            currentPath === link.href ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="menu-toggle"
+      class="sm:hidden p-2 text-[var(--text-primary)]"
+      aria-label="Toggle menu"
+    >
+      <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div
+    id="mobile-menu"
+    class="sm:hidden fixed inset-0 top-16 bg-[var(--bg-primary)] transform translate-x-full transition-transform duration-200"
+  >
+    <div class="flex flex-col items-center gap-8 pt-12">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`text-lg font-medium transition-colors hover:text-[var(--accent)] ${
+            currentPath === link.href ? 'text-[var(--accent)]' : 'text-[var(--text-primary)]'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let isOpen = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('bg-[var(--bg-primary)]/80', 'backdrop-blur-xl', 'shadow-sm');
+    } else {
+      navbar?.classList.remove('bg-[var(--bg-primary)]/80', 'backdrop-blur-xl', 'shadow-sm');
+    }
+  });
+
+  menuToggle?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      mobileMenu?.classList.remove('translate-x-full');
+    } else {
+      mobileMenu?.classList.add('translate-x-full');
+    }
+  });
+</script>
