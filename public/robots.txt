@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xiaokaiyyy.github.io/sitemap-index.xml
