@@ -6,15 +6,21 @@
     "username": "xiaokaiyyy"
   },
   {
-    "platform": "Twitter",
-    "icon": "twitter-logo",
-    "url": "https://twitter.com/yourname",
+    "platform": "X",
+    "icon": "x-logo",
+    "url": "https://x.com/yourname",
     "username": "@yourname"
+  },
+  {
+    "platform": "LinkedIn",
+    "icon": "linkedin-logo",
+    "url": "https://www.linkedin.com/in/kopkai/",
+    "username": "kopkai"
   },
   {
     "platform": "Email",
     "icon": "envelope",
-    "url": "mailto:junkai.yang@example.com",
-    "username": "junkai.yang@example.com"
+    "url": "mailto:xiaokaiyyy@outlook.com",
+    "username": "xiaokaiyyy@outlook.com"
   }
 ]
