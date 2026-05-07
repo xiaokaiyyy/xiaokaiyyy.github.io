@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap');
 
 @theme {
   --color-cream-50: #fdf6e3;
@@ -10,6 +10,7 @@
   --color-accent: #d97706;
   --color-accent-dark: #f59e0b;
   --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
 }
 
 @layer base {
@@ -42,10 +43,49 @@
   }
 }
 
+/* 极 subtle 的噪点纹理背景 */
+.noise-bg {
+  position: relative;
+}
+
+.noise-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ========================
+   入场动画
+   ======================== */
+
+@keyframes breatheIn {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+    filter: blur(4px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -53,6 +93,245 @@
   }
 }
 
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.92) rotate(-2deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.04) rotate(0.5deg);
+  }
+  80% {
+    transform: translateY(2px) scale(0.98) rotate(-0.3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(217, 119, 6, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ========================
+   动画工具类
+   ======================== */
+
+.animate-breathe-in {
+  animation: breatheIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-pop-in {
+  animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.animate-draw-line {
+  animation: drawLine 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 初始隐藏状态（动画触发前） */
+.animate-on-scroll {
+  opacity: 0;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+}
+
+/* ========================
+   交错延迟工具类
+   ======================== */
+
+.stagger-1 { animation-delay: 0.08s; }
+.stagger-2 { animation-delay: 0.18s; }
+.stagger-3 { animation-delay: 0.28s; }
+.stagger-4 { animation-delay: 0.38s; }
+.stagger-5 { animation-delay: 0.48s; }
+.stagger-6 { animation-delay: 0.58s; }
+
+/* ========================
+   导航链接下划线
+   ======================== */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 1px;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ========================
+   社交图标弹跳
+   ======================== */
+
+.social-icon-animated {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.15s ease;
+}
+
+.social-icon-animated:hover {
+  transform: translateY(-3px);
+}
+
+/* ========================
+   头像光晕与浮动
+   ======================== */
+
+.avatar-glow {
+  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.avatar-glow:hover {
+  box-shadow: 0 8px 32px rgba(217, 119, 6, 0.18);
+  transform: translateY(-4px);
+}
+
+/* ========================
+   技能标签增强
+   ======================== */
+
+.skill-tag {
+  opacity: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.skill-tag.is-visible {
+  opacity: 1;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(91, 70, 54, 0.08);
+}
+
+/* ========================
+   时间轴增强
+   ======================== */
+
+.timeline-line {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.timeline-line.is-visible {
+  animation: drawLine 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.timeline-item {
+  opacity: 0;
+}
+
+.timeline-item.is-visible {
+  animation: slideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.timeline-dot {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.timeline-dot.is-visible {
+  animation: pulseGlow 2.5s ease-in-out 0.6s infinite;
+}
+
+/* ========================
+   减弱动态效果降级
+   ======================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-on-scroll,
+  .skill-tag,
+  .timeline-item {
+    opacity: 1 !important;
+  }
+
+  .timeline-line {
+    transform: scaleY(1) !important;
+  }
 }

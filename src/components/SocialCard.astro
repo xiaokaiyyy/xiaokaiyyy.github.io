@@ -17,7 +17,7 @@ const iconMap: Record<string, string> = {
 ---
 
 <div class="bg-[var(--bg-card)] rounded-xl p-6 flex flex-col items-center text-center gap-3
-  hover:-translate-y-1 hover:shadow-lg transition-all duration-200">
+  hover:-translate-y-1.5 hover:shadow-lg transition-all duration-250">
   <div class="text-[var(--text-primary)]" set:html={iconMap[icon] || iconMap['envelope']} />
   <h3 class="text-base font-semibold text-[var(--text-primary)]">{platform}</h3>
   <p class="text-sm text-[var(--text-secondary)]">{username}</p>

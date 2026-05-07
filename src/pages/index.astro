@@ -17,16 +17,18 @@ import profile from '../data/profile.json';
       <img
         src={profile.avatar}
         alt={profile.name}
-        class="w-[120px] h-[120px] rounded-full object-cover shadow-lg mb-6"
+        class="w-[120px] h-[120px] rounded-full object-cover shadow-lg mb-6 animate-breathe-in avatar-glow"
         loading="eager"
       />
-      <h1 class="text-[32px] font-bold text-[var(--text-primary)] tracking-tight mb-3">
+      <h1 class="text-[32px] font-bold text-[var(--text-primary)] tracking-tight mb-3 font-serif animate-fade-in-up stagger-1">
         {profile.name}
       </h1>
-      <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-md">
+      <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-md animate-fade-in-up stagger-2">
         {profile.bio}
       </p>
-      <SocialIcons size={24} />
+      <div class="animate-fade-in-up stagger-3">
+        <SocialIcons size={24} animated />
+      </div>
     </section>
 
     <!-- Skills -->

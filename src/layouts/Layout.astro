@@ -20,11 +20,11 @@ const { title, description = '个人主页' } = Astro.props;
     <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/x-icon" href="/icon.ico" />
     <title>{title}</title>
-    <style>
+    <style is:global>
       @import '../styles/global.css';
     </style>
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col noise-bg">
     <slot />
   </body>
 </html>

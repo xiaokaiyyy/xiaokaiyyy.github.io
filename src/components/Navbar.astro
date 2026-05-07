@@ -11,7 +11,7 @@ const currentPath = Astro.url.pathname;
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-200">
   <div class="max-w-[800px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
     <a href="/" class="text-lg font-bold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">
-      JK
+      @xiaokaiyyy
     </a>
 
     <!-- Desktop nav -->
@@ -19,8 +19,8 @@ const currentPath = Astro.url.pathname;
       {navLinks.map(link => (
         <a
           href={link.href}
-          class={`text-sm font-medium transition-colors hover:text-[var(--accent)] ${
-            currentPath === link.href ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]'
+          class={`nav-link text-sm font-medium transition-colors hover:text-[var(--accent)] ${
+            currentPath === link.href ? 'text-[var(--accent)] is-active' : 'text-[var(--text-secondary)]'
           }`}
         >
           {link.label}

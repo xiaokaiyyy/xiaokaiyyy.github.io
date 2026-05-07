@@ -11,7 +11,7 @@ import profile from '../data/profile.json';
   <main class="flex-1 pt-16">
     <div class="max-w-[800px] mx-auto px-4 sm:px-6 py-16 space-y-16">
       <!-- 个人故事 -->
-      <section>
+      <section class="animate-fade-in-up">
         <h1 class="text-2xl font-semibold text-[var(--text-primary)] mb-6">关于我</h1>
         <div class="space-y-4 text-[var(--text-primary)] leading-relaxed">
           <p>
@@ -29,10 +29,10 @@ import profile from '../data/profile.json';
       </section>
 
       <!-- 技能详情 -->
-      <section>
+      <section class="animate-fade-in-up stagger-2">
         <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">技能</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="bg-[var(--bg-card)] rounded-xl p-5">
+          <div class="bg-[var(--bg-card)] rounded-xl p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
             <h3 class="text-sm font-semibold text-[var(--text-secondary)] mb-3 uppercase tracking-wide">前端</h3>
             <div class="flex flex-wrap gap-2">
               {['JavaScript', 'TypeScript', 'React', 'Vue', 'Astro'].map(s => (
@@ -40,7 +40,7 @@ import profile from '../data/profile.json';
               ))}
             </div>
           </div>
-          <div class="bg-[var(--bg-card)] rounded-xl p-5">
+          <div class="bg-[var(--bg-card)] rounded-xl p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
             <h3 class="text-sm font-semibold text-[var(--text-secondary)] mb-3 uppercase tracking-wide">后端 & 工具</h3>
             <div class="flex flex-wrap gap-2">
               {['Python', 'SAS', 'Git', 'Linux', 'AI Agent', 'PHP', 'SQL'].map(s => (
