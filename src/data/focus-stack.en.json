@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Python",
+    "category": "Language",
+    "description": "Exploring Python as a replacement for SAS in daily data analysis and modeling. SAS is too old school, and frankly they don't seem too keen on Chinese users. /shrug",
+    "level": 80
+  },
+  {
+    "name": "AI Agent",
+    "category": "AI",
+    "description": "Claude Code + TRAE, paired with GLM/Kimi, has become the standard setup. For work, I've also been using the ancient Dify lately—surprisingly not bad.",
+    "level": 75
+  },
+  {
+    "name": "Linux",
+    "category": "OS",
+    "description": "Due to VPS deployment needs, I've been using Rocky Linux heavily lately. Ran into some issues, but I've grown to like it.",
+    "level": 35
+  },
+  {
+    "name": "Mac",
+    "category": "OS",
+    "description": "Fed up with the company PC, I've mostly moved my personal dev environment back to Mac. Ghostty + Claude Code + Codex is the main stack.",
+    "level": 75
+  }
+]

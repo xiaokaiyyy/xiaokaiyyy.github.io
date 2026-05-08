@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { t } from '../i18n/ui.ts';
+import profileZh from '../data/profile.json';
+import profileEn from '../data/profile.en.json';
+import profileJa from '../data/profile.ja.json';
+import focusStackZh from '../data/focus-stack.json';
+import focusStackEn from '../data/focus-stack.en.json';
+import focusStackJa from '../data/focus-stack.ja.json';
+import projectsZh from '../data/projects.json';
+import projectsEn from '../data/projects.en.json';
+import projectsJa from '../data/projects.ja.json';
+
+const locale = Astro.currentLocale || 'zh';
+const profile = locale === 'en' ? profileEn : locale === 'ja' ? profileJa : profileZh;
+const focusStack = locale === 'en' ? focusStackEn : locale === 'ja' ? focusStackJa : focusStackZh;
+const projects = locale === 'en' ? projectsEn : locale === 'ja' ? projectsJa : projectsZh;
+---
+
+<Layout title={`${t(locale, 'projects.title')} - ${profile.name}`} description={`${profile.name} - ${t(locale, 'projects.subtitle')}`}>
+  <Navbar />
+
+  <main class="flex-1 pt-16">
+    <div class="max-w-[800px] mx-auto px-4 sm:px-6 py-16 space-y-16">
+      <!-- 专注技术栈 -->
+      <section class="animate-fade-in-up">
+        <h1 class="text-2xl font-semibold text-[var(--text-primary)] mb-2">{t(locale, 'projects.title')}</h1>
+        <p class="text-[var(--text-secondary)] mb-8">{t(locale, 'projects.subtitle')}</p>
+
+        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">{t(locale, 'projects.focusStack')}</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {focusStack.map((tech, index) => (
+            <div
+              class="bg-[var(--bg-card)] rounded-xl p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 animate-fade-in-up"
+              style={`animation-delay: ${0.1 * (index + 1)}s`}
+            >
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-semibold text-[var(--text-primary)]">{tech.name}</h3>
+                <span class="text-xs text-[var(--text-secondary)] bg-[var(--bg-primary)] px-2 py-0.5 rounded-full">
+                  {tech.category}
+                </span>
+              </div>
+              <p class="text-sm text-[var(--text-secondary)] mb-3 leading-relaxed">{tech.description}</p>
+              <div class="w-full bg-[var(--bg-primary)] rounded-full h-2 overflow-hidden">
+                <div
+                  class="h-full rounded-full transition-all duration-1000 ease-out"
+                  style={`width: ${tech.level}%; background-color: var(--accent);`}
+                />
+              </div>
+              <div class="text-right mt-1">
+                <span class="text-xs text-[var(--text-secondary)]">{tech.level}%</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- 项目思考 -->
+      <section class="animate-fade-in-up stagger-2">
+        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">{t(locale, 'projects.thinking')}</h2>
+        <div class="space-y-6">
+          {projects.map((project, index) => (
+            <div
+              class="bg-[var(--bg-card)] rounded-xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 animate-fade-in-up"
+              style={`animation-delay: ${0.15 * (index + 1)}s`}
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs font-medium text-[var(--accent)] bg-[var(--accent)]/10 px-2.5 py-1 rounded-full">
+                  {project.category}
+                </span>
+                <span class="text-xs text-[var(--text-secondary)]">{project.date}</span>
+              </div>
+              <h3 class="font-semibold text-[var(--text-primary)] mb-2">{project.title}</h3>
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{project.content}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

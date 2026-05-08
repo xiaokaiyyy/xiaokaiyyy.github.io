@@ -1,0 +1,26 @@
+[
+  {
+    "title": "From Monolith to Modular: Progressive Frontend Refactoring",
+    "date": "2026-04",
+    "category": "Architecture",
+    "content": "When maintaining a gradually bloated legacy frontend project, I deeply understood the importance of 'make it work first, then make it right.' Recently led the migration from a jQuery-era monolithic codebase to a modular architecture. The biggest challenge wasn't the technology itself, but finding a reasonable refactoring rhythm and boundaries under continuous delivery pressure."
+  },
+  {
+    "title": "Modernizing Static Sites: Why Astro",
+    "date": "2026-03",
+    "category": "Tech Choice",
+    "content": "When evaluating personal homepage tech stacks, I compared Next.js, Nuxt, and Astro. Ultimately won over by Astro's 'Zero JS by default' philosophy — a content site's initial load should not be dragged down by the framework itself. The Islands architecture injects interactivity on demand, and this 'progressive enhancement' mindset is worth promoting in more scenarios."
+  },
+  {
+    "title": "AI-Assisted Programming: Boundaries Between Tools and Humans",
+    "date": "2026-02",
+    "category": "AI Practice",
+    "content": "After months of deep use of AI coding assistants, I realized what they excel at is not 'writing code for me,' but 'helping me understand code' and 'quickly validating ideas.' The real value is treating AI as an indefatigable pair programming partner, not a black-box code generator. Maintaining understanding of underlying principles is more important than pursuing generation speed."
+  },
+  {
+    "title": "Building Observability for Data Pipelines",
+    "date": "2026-01",
+    "category": "Engineering",
+    "content": "In the data ETL project I was responsible for, invested effort in building a complete observable chain from log aggregation to anomaly alerting. Found that for 'silent failure' scenarios like data pipelines, timely alerting is more important than perfect architecture. A simple system that can notify anomalies within 5 minutes is far better than a complex solution that only exposes problems after an hour."
+  }
+]

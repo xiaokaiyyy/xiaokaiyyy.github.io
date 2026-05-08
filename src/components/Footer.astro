@@ -1,12 +1,15 @@
 ---
+import { t } from '../i18n/ui.ts';
 import SocialIcons from './SocialIcons.astro';
+
+const locale = Astro.currentLocale || 'zh';
 ---
 
 <footer class="mt-auto py-8 border-t border-[var(--border)] animate-fade-in-up">
   <div class="max-w-[800px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-4">
     <SocialIcons size={20} />
     <p class="text-sm text-[var(--text-secondary)]">
-      &copy; 2026 @xiaokaiyyy. All rights reserved.
+      {t(locale, 'footer.copyright')}
     </p>
   </div>
 </footer>

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Python",
+    "category": "言語",
+    "description": "日常のデータ分析とモデリングの主力ツールとして SAS の代替を検討中。SAS は時代遅れすぎるし、どうも中国人にはあまり歓迎されていないようだ。/笑",
+    "level": 80
+  },
+  {
+    "name": "AI Agent",
+    "category": "AI",
+    "description": "Claude Code + TRAE を中心に、GLM/Kimi と組み合わせて定番構成に。仕事の関係で最近は上古の Dify も使っているが、意外と悪くない。",
+    "level": 75
+  },
+  {
+    "name": "Linux",
+    "category": "OS",
+    "description": "VPS デプロイの関係で、最近は Rocky Linux を高頻度で使用。いくつか問題はあったが、慣れてくると意外と気に入った。",
+    "level": 35
+  },
+  {
+    "name": "Mac",
+    "category": "OS",
+    "description": "会社の PC にうんざりして、個人の開発環境をほぼ Mac に移行した。Ghostty + Claude Code + Codex が主力。",
+    "level": 75
+  }
+]

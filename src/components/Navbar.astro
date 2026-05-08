@@ -1,45 +1,59 @@
 ---
-const navLinks = [
-  { href: '/', label: '首页' },
-  { href: '/about', label: '关于我' },
-  { href: '/contact', label: '联系方式' },
-];
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { t } from '../i18n/ui.ts';
+import LangSwitcher from './LangSwitcher.astro';
 
+const locale = Astro.currentLocale || 'zh';
 const currentPath = Astro.url.pathname;
+const basePath = currentPath.replace(/^\/(en|ja)(?=\/|$)/, '') || '/';
+
+const normalizePath = (href: string) => href.replace(/^\/(en|ja)(?=\/|$)/, '') || '/';
+
+const navLinks = [
+  { path: '', label: t(locale, 'nav.home') },
+  { path: 'about', label: t(locale, 'nav.about') },
+  { path: 'projects', label: t(locale, 'nav.projects') },
+  { path: 'contact', label: t(locale, 'nav.contact') },
+];
 ---
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-200">
   <div class="max-w-[800px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-    <a href="/" class="text-lg font-bold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">
+    <a href={getRelativeLocaleUrl(locale, '')} class="text-lg font-bold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors">
       @xiaokaiyyy
     </a>
 
     <!-- Desktop nav -->
-    <div class="hidden sm:flex items-center gap-8">
+    <div class="hidden sm:flex items-center gap-6">
       {navLinks.map(link => (
         <a
-          href={link.href}
+          href={getRelativeLocaleUrl(locale, link.path)}
           class={`nav-link text-sm font-medium transition-colors hover:text-[var(--accent)] ${
-            currentPath === link.href ? 'text-[var(--accent)] is-active' : 'text-[var(--text-secondary)]'
+            basePath === normalizePath(getRelativeLocaleUrl(locale, link.path)) ? 'text-[var(--accent)] is-active' : 'text-[var(--text-secondary)]'
           }`}
         >
           {link.label}
         </a>
       ))}
+      <div class="w-px h-4 bg-[var(--border)] mx-1"></div>
+      <LangSwitcher />
     </div>
 
-    <!-- Mobile hamburger -->
-    <button
-      id="menu-toggle"
-      class="sm:hidden p-2 text-[var(--text-primary)]"
-      aria-label="Toggle menu"
-    >
-      <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg>
-    </button>
+    <!-- Mobile: lang switcher + hamburger -->
+    <div class="sm:hidden flex items-center gap-1">
+      <LangSwitcher />
+      <button
+        id="menu-toggle"
+        class="sm:hidden p-2 text-[var(--text-primary)]"
+        aria-label="Toggle menu"
+      >
+        <svg id="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile drawer -->
@@ -50,9 +64,9 @@ const currentPath = Astro.url.pathname;
     <div class="flex flex-col items-center gap-8 pt-12">
       {navLinks.map(link => (
         <a
-          href={link.href}
+          href={getRelativeLocaleUrl(locale, link.path)}
           class={`text-lg font-medium transition-colors hover:text-[var(--accent)] ${
-            currentPath === link.href ? 'text-[var(--accent)]' : 'text-[var(--text-primary)]'
+            basePath === normalizePath(getRelativeLocaleUrl(locale, link.path)) ? 'text-[var(--accent)]' : 'text-[var(--text-primary)]'
           }`}
         >
           {link.label}

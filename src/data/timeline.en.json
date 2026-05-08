@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2026-04",
+    "title": "Started designing personal homepage",
+    "description": "Built a new GitHub Pages personal site with Astro"
+  },
+  {
+    "date": "2025-12",
+    "title": "Learned Astro framework",
+    "description": "Deeply explored Astro's Islands architecture and static generation capabilities"
+  },
+  {
+    "date": "2025-06",
+    "title": "Joined open source community",
+    "description": "Started contributing to open source projects and participating in technical community discussions"
+  }
+]

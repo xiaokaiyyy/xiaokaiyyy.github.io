@@ -1,0 +1,70 @@
+export const translations = {
+  zh: {
+    'nav.home': '首页',
+    'nav.about': '关于我',
+    'nav.projects': '最近项目',
+    'nav.contact': '联系方式',
+    'skills.title': '技术栈',
+    'timeline.title': '动态',
+    'about.title': '关于我',
+    'about.skillsTitle': '技能',
+    'about.frontend': '前端',
+    'about.backend': '后端 & 工具',
+    'contact.title': '联系我',
+    'contact.emailTitle': '或者直接发邮件',
+    'contact.copyToast': '已复制到剪贴板',
+    'projects.title': '最近项目',
+    'projects.subtitle': '当前专注的技术方向与项目思考',
+    'projects.focusStack': '专注技术栈',
+    'projects.thinking': '项目思考',
+    'footer.copyright': '© 2026 @xiaokaiyyy. All rights reserved.',
+  },
+  en: {
+    'nav.home': 'Home',
+    'nav.about': 'About',
+    'nav.projects': 'Projects',
+    'nav.contact': 'Contact',
+    'skills.title': 'Skills',
+    'timeline.title': 'Timeline',
+    'about.title': 'About Me',
+    'about.skillsTitle': 'Skills',
+    'about.frontend': 'Frontend',
+    'about.backend': 'Backend & Tools',
+    'contact.title': 'Contact Me',
+    'contact.emailTitle': 'Or send an email',
+    'contact.copyToast': 'Copied to clipboard',
+    'projects.title': 'Recent Projects',
+    'projects.subtitle': 'Current tech focus and project thoughts',
+    'projects.focusStack': 'Focus Stack',
+    'projects.thinking': 'Project Thoughts',
+    'footer.copyright': '© 2026 @xiaokaiyyy. All rights reserved.',
+  },
+  ja: {
+    'nav.home': 'ホーム',
+    'nav.about': '私について',
+    'nav.projects': '最近のプロジェクト',
+    'nav.contact': 'お問い合わせ',
+    'skills.title': '技術スタック',
+    'timeline.title': 'タイムライン',
+    'about.title': '私について',
+    'about.skillsTitle': 'スキル',
+    'about.frontend': 'フロントエンド',
+    'about.backend': 'バックエンド & ツール',
+    'contact.title': 'お問い合わせ',
+    'contact.emailTitle': 'またはメールを送る',
+    'contact.copyToast': 'コピーしました',
+    'projects.title': '最近のプロジェクト',
+    'projects.subtitle': '現在の技術方向とプロジェクトの考察',
+    'projects.focusStack': 'フォーカス技術',
+    'projects.thinking': 'プロジェクト考察',
+    'footer.copyright': '© 2026 @xiaokaiyyy. All rights reserved.',
+  },
+} as const;
+
+export type Locale = keyof typeof translations;
+export type TranslationKey = keyof typeof translations.zh;
+
+export function t(locale: Locale | undefined, key: TranslationKey): string {
+  const l = locale || 'zh';
+  return translations[l][key] || translations.zh[key];
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2026-04",
+    "title": "开始设计个人主页",
+    "description": "基于 Astro 构建全新的 GitHub Pages 个人站点"
+  },
+  {
+    "date": "2025-12",
+    "title": "学习 Astro 框架",
+    "description": "深入探索 Astro 的 Islands 架构和静态生成能力"
+  },
+  {
+    "date": "2025-06",
+    "title": "加入开源社区",
+    "description": "开始为开源项目贡献代码，参与技术社区讨论"
+  }
+]
