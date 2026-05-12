@@ -1,91 +1,145 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
 
 @theme {
-  --color-cream-50: #fdf6e3;
-  --color-cream-100: #eee8d5;
-  --color-cream-200: #d4c5a9;
-  --color-coffee-500: #8b7355;
-  --color-coffee-700: #5b4636;
-  --color-accent: #d97706;
-  --color-accent-dark: #f59e0b;
+  --color-term-bg: #0c0c0c;
+  --color-term-bg-card: #111111;
+  --color-term-bg-hover: #1a1a1a;
+  --color-term-text: #e0e0e0;
+  --color-term-text-dim: #888888;
+  --color-term-text-faint: #555555;
+  --color-term-amber: #ff9f1c;
+  --color-term-amber-dim: #c4820e;
+  --color-term-border: #333333;
+  --color-term-border-dim: #222222;
+  --color-term-red: #ff5f56;
+  --color-term-yellow: #ffbd2e;
+  --color-term-green: #27c93f;
+  --font-mono: "JetBrains Mono", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
   --font-sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
 }
 
 @layer base {
   :root {
-    --bg-primary: #fdf6e3;
-    --bg-card: #eee8d5;
-    --text-primary: #5b4636;
-    --text-secondary: #8b7355;
-    --accent: #d97706;
-    --border: #d4c5a9;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg-primary: #1c1917;
-      --bg-card: #292524;
-      --text-primary: #e7e5e4;
-      --text-secondary: #a8a29e;
-      --accent: #f59e0b;
-      --border: #44403c;
-    }
+    --bg-primary: #0c0c0c;
+    --bg-card: #111111;
+    --bg-hover: #1a1a1a;
+    --text-primary: #e0e0e0;
+    --text-secondary: #888888;
+    --text-faint: #555555;
+    --accent: #ff9f1c;
+    --accent-dim: #c4820e;
+    --border: #333333;
+    --border-dim: #222222;
   }
 
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-    line-height: 1.75;
+    font-family: "JetBrains Mono", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", monospace;
+    line-height: 1.7;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-dim);
   }
 }
 
-/* 极 subtle 的噪点纹理背景 */
-.noise-bg {
-  position: relative;
-}
-
-.noise-bg::before {
-  content: '';
+/* CRT 扫描线 + 暗角 overlay */
+.crt-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
+  z-index: 9998;
+  opacity: 1;
+}
+
+.crt-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  background-size: 100% 2px;
+}
+
+.crt-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* 文字磷光发光 */
+.text-glow {
+  text-shadow: 0 0 8px rgba(255, 159, 28, 0.25), 0 0 2px rgba(255, 159, 28, 0.1);
+}
+
+.text-glow-strong {
+  text-shadow: 0 0 16px rgba(255, 159, 28, 0.4), 0 0 4px rgba(255, 159, 28, 0.2);
 }
 
 /* ========================
-   入场动画
+   动画定义
    ======================== */
 
-@keyframes breatheIn {
-  from {
+@keyframes turn-on {
+  0% {
     opacity: 0;
-    transform: scale(0.88);
-    filter: blur(4px);
+    filter: brightness(0);
+  }
+  20% {
+    opacity: 1;
+    filter: brightness(2) contrast(1.2);
+  }
+  40% {
+    filter: brightness(0.8) contrast(1.5);
   }
   60% {
-    opacity: 1;
-    transform: scale(1.02);
-    filter: blur(0);
+    filter: brightness(1.2) contrast(1);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
+    filter: brightness(1) contrast(1);
   }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes typewriter {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0% 0 0); }
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -96,18 +150,11 @@
 @keyframes popIn {
   0% {
     opacity: 0;
-    transform: translateY(24px) scale(0.92) rotate(-2deg);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-4px) scale(1.04) rotate(0.5deg);
-  }
-  80% {
-    transform: translateY(2px) scale(0.98) rotate(-0.3deg);
+    transform: translateY(16px) scale(0.95);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1) rotate(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -125,7 +172,7 @@
 @keyframes slideInLeft {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-12px);
   }
   to {
     opacity: 1;
@@ -133,65 +180,37 @@
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 var(--accent);
-  }
-  50% {
-    box-shadow: 0 0 0 6px rgba(217, 119, 6, 0);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(2.5);
-    opacity: 0;
-  }
-}
-
 /* ========================
    动画工具类
    ======================== */
 
-.animate-breathe-in {
-  animation: breatheIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+.animate-turn-on {
+  animation: turn-on 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.animate-typewriter {
+  display: inline-block;
+  animation: typewriter 0.8s steps(20, end) forwards;
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: fadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-pop-in {
-  animation: popIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: popIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-draw-line {
-  animation: drawLine 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: drawLine 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-slide-in-left {
-  animation: slideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 2.5s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: slideInLeft 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* 初始隐藏状态（动画触发前） */
@@ -207,49 +226,40 @@
    交错延迟工具类
    ======================== */
 
-.stagger-1 { animation-delay: 0.08s; }
-.stagger-2 { animation-delay: 0.18s; }
-.stagger-3 { animation-delay: 0.28s; }
-.stagger-4 { animation-delay: 0.38s; }
-.stagger-5 { animation-delay: 0.48s; }
-.stagger-6 { animation-delay: 0.58s; }
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
 
 /* ========================
-   导航链接下划线
+   导航链接高亮
    ======================== */
 
 .nav-link {
   position: relative;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  border-radius: 1px;
-  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), left 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.nav-link:hover::after,
-.nav-link.is-active::after {
-  width: 100%;
-  left: 0;
+.nav-link:hover,
+.nav-link.is-active {
+  color: var(--accent);
+  background-color: var(--bg-hover);
 }
 
 /* ========================
-   社交图标弹跳
+   社交图标
    ======================== */
 
 .social-icon-animated {
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.15s ease;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
 }
 
 .social-icon-animated:hover {
-  transform: translateY(-3px);
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(255, 159, 28, 0.3);
 }
 
 /* ========================
@@ -257,12 +267,14 @@
    ======================== */
 
 .avatar-glow {
-  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  border: 2px solid var(--border);
 }
 
 .avatar-glow:hover {
-  box-shadow: 0 8px 32px rgba(217, 119, 6, 0.18);
-  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(255, 159, 28, 0.15);
+  transform: translateY(-2px);
 }
 
 /* ========================
@@ -271,7 +283,7 @@
 
 .skill-tag {
   opacity: 0;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.15s ease, background-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, text-shadow 0.15s ease;
 }
 
 .skill-tag.is-visible {
@@ -279,8 +291,10 @@
 }
 
 .skill-tag:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 4px 12px rgba(91, 70, 54, 0.08);
+  color: var(--accent);
+  border-color: var(--accent);
+  background-color: var(--bg-hover);
+  text-shadow: 0 0 6px rgba(255, 159, 28, 0.2);
 }
 
 /* ========================
@@ -301,15 +315,16 @@
 }
 
 .timeline-item.is-visible {
-  animation: slideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: slideInLeft 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .timeline-dot {
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .timeline-dot.is-visible {
-  animation: pulseGlow 2.5s ease-in-out 0.6s infinite;
+  border-color: var(--accent);
+  background-color: var(--bg-primary);
 }
 
 /* ========================
@@ -333,5 +348,9 @@
 
   .timeline-line {
     transform: scaleY(1) !important;
+  }
+
+  .crt-overlay {
+    display: none !important;
   }
 }

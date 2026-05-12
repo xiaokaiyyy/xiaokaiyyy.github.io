@@ -34,35 +34,44 @@ const content = aboutContent[locale];
 <Layout title={`${t(locale, 'about.title')} - ${profile.name}`} description={`${t(locale, 'about.title')} - ${profile.name}`}>
   <Navbar />
 
-  <main class="flex-1 pt-16">
-    <div class="max-w-[800px] mx-auto px-4 sm:px-6 py-16 space-y-16">
-      <!-- 个人故事 -->
+  <main class="flex-1 pt-16 font-mono">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-6 py-16 space-y-16">
+      <!-- About content -->
       <section class="animate-fade-in-up">
-        <h1 class="text-2xl font-semibold text-[var(--text-primary)] mb-6">{t(locale, 'about.title')}</h1>
-        <div class="space-y-4 text-[var(--text-primary)] leading-relaxed">
+        <div class="flex items-center gap-2 text-sm text-[#888] mb-6">
+          <span class="text-[#27c93f]">➜</span>
+          <span>~</span>
+          <span>cat about.md</span>
+        </div>
+        <h1 class="text-2xl font-bold text-[#e0e0e0] text-glow mb-6"># {t(locale, 'about.title')}</h1>
+        <div class="space-y-4 text-[#e0e0e0] leading-relaxed">
           <p>{content.p1}</p>
           <p>{content.p2}</p>
           <p>{content.p3}</p>
         </div>
       </section>
 
-      <!-- 技能详情 -->
+      <!-- Skills -->
       <section class="animate-fade-in-up stagger-2">
-        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">{t(locale, 'about.skillsTitle')}</h2>
+        <div class="flex items-center gap-2 text-sm text-[#888] mb-6">
+          <span class="text-[#27c93f]">➜</span>
+          <span>~</span>
+          <span>ls skills/</span>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="bg-[var(--bg-card)] rounded-xl p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
-            <h3 class="text-sm font-semibold text-[var(--text-secondary)] mb-3 uppercase tracking-wide">{t(locale, 'about.frontend')}</h3>
-            <div class="flex flex-wrap gap-2">
+          <div class="border border-[#333] bg-[#111] p-5 hover:border-[#555] transition-colors duration-200">
+            <h3 class="text-sm font-semibold text-[#888] mb-3 uppercase tracking-wide">## {t(locale, 'about.frontend')}</h3>
+            <div class="flex flex-wrap gap-2 text-sm">
               {['JavaScript', 'TypeScript', 'React', 'Vue', 'Astro'].map(s => (
-                <span class="text-sm text-[var(--text-primary)]">{s}</span>
+                <span class="text-[#e0e0e0]">[{s}]</span>
               ))}
             </div>
           </div>
-          <div class="bg-[var(--bg-card)] rounded-xl p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
-            <h3 class="text-sm font-semibold text-[var(--text-secondary)] mb-3 uppercase tracking-wide">{t(locale, 'about.backend')}</h3>
-            <div class="flex flex-wrap gap-2">
+          <div class="border border-[#333] bg-[#111] p-5 hover:border-[#555] transition-colors duration-200">
+            <h3 class="text-sm font-semibold text-[#888] mb-3 uppercase tracking-wide">## {t(locale, 'about.backend')}</h3>
+            <div class="flex flex-wrap gap-2 text-sm">
               {['Python', 'SAS', 'Git', 'Linux', 'AI Agent', 'PHP', 'SQL'].map(s => (
-                <span class="text-sm text-[var(--text-primary)]">{s}</span>
+                <span class="text-[#e0e0e0]">[{s}]</span>
               ))}
             </div>
           </div>

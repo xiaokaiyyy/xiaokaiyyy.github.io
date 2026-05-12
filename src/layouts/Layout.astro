@@ -19,12 +19,16 @@ const { title, description = '个人主页' } = Astro.props;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/x-icon" href="/icon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
     <style is:global>
       @import '../styles/global.css';
     </style>
   </head>
-  <body class="min-h-screen flex flex-col noise-bg">
+  <body class="min-h-screen flex flex-col animate-turn-on">
+    <div class="crt-overlay" aria-hidden="true"></div>
     <slot />
   </body>
 </html>

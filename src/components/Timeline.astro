@@ -8,24 +8,30 @@ const locale = Astro.currentLocale || 'zh';
 const timeline = locale === 'en' ? timelineEn : locale === 'ja' ? timelineJa : timelineZh;
 ---
 
-<section class="max-w-[600px] mx-auto px-4 sm:px-6 py-16">
-  <h2 class="text-2xl font-semibold text-center mb-12 text-[var(--text-primary)] animate-on-scroll">{t(locale, 'timeline.title')}</h2>
+<section class="max-w-[900px] mx-auto px-4 sm:px-6 pt-8 pb-16 font-mono">
+  <div class="flex items-center gap-2 text-sm text-[#888] mb-12 animate-on-scroll">
+    <span class="text-[#27c93f]">➜</span>
+    <span>~</span>
+    <span>{t(locale, 'timeline.title')}</span>
+  </div>
   <div class="relative">
     <!-- Vertical line -->
-    <div class="timeline-line absolute left-[7px] top-2 bottom-2 w-[2px] bg-[var(--border)]"></div>
+    <div class="timeline-line absolute left-[7px] top-2 bottom-2 w-px bg-[#333]"></div>
 
-    <div class="space-y-8">
+    <div class="space-y-6">
       {timeline.map((event, index) => (
         <div class="timeline-item relative pl-8 group" data-delay={index}>
           <!-- Dot -->
-          <div class="timeline-dot absolute left-0 top-2 w-4 h-4 rounded-full border-2 border-[var(--border)] bg-[var(--bg-primary)]
-            group-hover:border-[var(--accent)] group-hover:bg-[var(--accent)] transition-colors duration-150">
+          <div class="timeline-dot absolute left-0 top-1.5 w-3.5 h-3.5 border border-[#333] bg-[#0c0c0c]
+            group-hover:border-[#ff9f1c] group-hover:bg-[#ff9f1c] transition-colors duration-150">
           </div>
 
           <div class="space-y-1">
-            <span class="text-[13px] text-[var(--text-secondary)] font-medium">{event.date}</span>
-            <h3 class="text-base font-semibold text-[var(--text-primary)]">{event.title}</h3>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{event.description}</p>
+            <div class="flex items-baseline gap-3 flex-wrap">
+              <span class="text-xs text-[#555] font-mono">[{event.date}]</span>
+              <h3 class="text-sm font-semibold text-[#e0e0e0]">{event.title}</h3>
+            </div>
+            <p class="text-sm text-[#888] leading-relaxed">{event.description}</p>
           </div>
         </div>
       ))}

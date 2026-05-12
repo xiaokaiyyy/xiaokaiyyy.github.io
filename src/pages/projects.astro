@@ -22,58 +22,71 @@ const projects = locale === 'en' ? projectsEn : locale === 'ja' ? projectsJa : p
 <Layout title={`${t(locale, 'projects.title')} - ${profile.name}`} description={`${profile.name} - ${t(locale, 'projects.subtitle')}`}>
   <Navbar />
 
-  <main class="flex-1 pt-16">
-    <div class="max-w-[800px] mx-auto px-4 sm:px-6 py-16 space-y-16">
-      <!-- 专注技术栈 -->
+  <main class="flex-1 pt-16 font-mono">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-6 py-16 space-y-16">
+      <!-- Focus Stack -->
       <section class="animate-fade-in-up">
-        <h1 class="text-2xl font-semibold text-[var(--text-primary)] mb-2">{t(locale, 'projects.title')}</h1>
-        <p class="text-[var(--text-secondary)] mb-8">{t(locale, 'projects.subtitle')}</p>
+        <div class="flex items-center gap-2 text-sm text-[#888] mb-2">
+          <span class="text-[#27c93f]">➜</span>
+          <span>~</span>
+          <span>{t(locale, 'projects.title')}</span>
+        </div>
+        <p class="text-[#888] mb-8 text-sm">{t(locale, 'projects.subtitle')}</p>
 
-        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">{t(locale, 'projects.focusStack')}</h2>
+        <div class="flex items-center gap-2 text-sm text-[#888] mb-6">
+          <span class="text-[#27c93f]">➜</span>
+          <span>~</span>
+          <span>{t(locale, 'projects.focusStack')}</span>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {focusStack.map((tech, index) => (
             <div
-              class="bg-[var(--bg-card)] rounded-xl p-5 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 animate-fade-in-up"
+              class="border border-[#333] bg-[#111] p-5 hover:border-[#555] transition-colors duration-200 animate-fade-in-up"
               style={`animation-delay: ${0.1 * (index + 1)}s`}
             >
-              <div class="flex items-center justify-between mb-2">
-                <h3 class="font-semibold text-[var(--text-primary)]">{tech.name}</h3>
-                <span class="text-xs text-[var(--text-secondary)] bg-[var(--bg-primary)] px-2 py-0.5 rounded-full">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-semibold text-[#e0e0e0]">[{tech.name}]</h3>
+                <span class="text-xs text-[#555] px-2 py-0.5 border border-[#333]">
                   {tech.category}
                 </span>
               </div>
-              <p class="text-sm text-[var(--text-secondary)] mb-3 leading-relaxed">{tech.description}</p>
-              <div class="w-full bg-[var(--bg-primary)] rounded-full h-2 overflow-hidden">
+              <p class="text-sm text-[#888] mb-4 leading-relaxed">{tech.description}</p>
+              <div class="w-full bg-[#0c0c0c] h-1.5 overflow-hidden">
                 <div
-                  class="h-full rounded-full transition-all duration-1000 ease-out"
-                  style={`width: ${tech.level}%; background-color: var(--accent);`}
+                  class="h-full transition-all duration-1000 ease-out"
+                  style={`width: ${tech.level}%; background-color: #ff9f1c;`}
                 />
               </div>
               <div class="text-right mt-1">
-                <span class="text-xs text-[var(--text-secondary)]">{tech.level}%</span>
+                <span class="text-xs text-[#555]">{tech.level}%</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <!-- 项目思考 -->
+      <!-- Project Thinking -->
       <section class="animate-fade-in-up stagger-2">
-        <h2 class="text-xl font-semibold text-[var(--text-primary)] mb-6">{t(locale, 'projects.thinking')}</h2>
-        <div class="space-y-6">
+        <div class="flex items-center gap-2 text-sm text-[#888] mb-6">
+          <span class="text-[#27c93f]">➜</span>
+          <span>~</span>
+          <span>{t(locale, 'projects.thinking')}</span>
+        </div>
+        <div class="space-y-4">
           {projects.map((project, index) => (
             <div
-              class="bg-[var(--bg-card)] rounded-xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200 animate-fade-in-up"
+              class="border border-[#333] bg-[#111] p-5 hover:border-[#555] transition-colors duration-200 animate-fade-in-up"
               style={`animation-delay: ${0.15 * (index + 1)}s`}
             >
-              <div class="flex items-center gap-3 mb-3">
-                <span class="text-xs font-medium text-[var(--accent)] bg-[var(--accent)]/10 px-2.5 py-1 rounded-full">
+              <div class="flex items-center gap-3 mb-2 flex-wrap">
+                <span class="text-xs font-medium text-[#ff9f1c] border border-[#ff9f1c]/30 px-2 py-0.5">
                   {project.category}
                 </span>
-                <span class="text-xs text-[var(--text-secondary)]">{project.date}</span>
+                <span class="text-xs text-[#555]">{project.date}</span>
               </div>
-              <h3 class="font-semibold text-[var(--text-primary)] mb-2">{project.title}</h3>
-              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{project.content}</p>
+              <h3 class="font-semibold text-[#e0e0e0] mb-2"># {project.title}</h3>
+              <p class="text-sm text-[#888] leading-relaxed">{project.content}</p>
             </div>
           ))}
         </div>

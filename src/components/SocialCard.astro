@@ -16,17 +16,17 @@ const iconMap: Record<string, string> = {
 };
 ---
 
-<div class="bg-[var(--bg-card)] rounded-xl p-6 flex flex-col items-center text-center gap-3
-  hover:-translate-y-1.5 hover:shadow-lg transition-all duration-250">
-  <div class="text-[var(--text-primary)]" set:html={iconMap[icon] || iconMap['envelope']} />
-  <h3 class="text-base font-semibold text-[var(--text-primary)]">{platform}</h3>
-  <p class="text-sm text-[var(--text-secondary)]">{username}</p>
+<div class="border border-[#333] bg-[#111] p-5 flex flex-col items-center text-center gap-3
+  hover:border-[#555] transition-colors duration-200">
+  <div class="text-[#e0e0e0]" set:html={iconMap[icon] || iconMap['envelope']} />
+  <h3 class="text-base font-semibold text-[#e0e0e0]">{platform}</h3>
+  <p class="text-sm text-[#888]">{username}</p>
   <a
     href={url}
     target="_blank"
     rel="noopener noreferrer"
-    class="mt-2 px-4 py-1.5 text-sm font-medium border border-[var(--border)] rounded-lg
-      text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-150"
+    class="mt-1 px-3 py-1 text-xs font-medium border border-[#333]
+      text-[#888] hover:border-[#ff9f1c] hover:text-[#ff9f1c] transition-colors duration-150"
   >
     访问
   </a>

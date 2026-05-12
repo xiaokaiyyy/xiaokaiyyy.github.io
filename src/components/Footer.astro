@@ -1,15 +1,24 @@
 ---
 import { t } from '../i18n/ui.ts';
-import SocialIcons from './SocialIcons.astro';
 
 const locale = Astro.currentLocale || 'zh';
 ---
 
-<footer class="mt-auto py-8 border-t border-[var(--border)] animate-fade-in-up">
-  <div class="max-w-[800px] mx-auto px-4 sm:px-6 flex flex-col items-center gap-4">
-    <SocialIcons size={20} />
-    <p class="text-sm text-[var(--text-secondary)]">
+<footer class="mt-auto border-t-2 border-[#333] bg-[#0c0c0c] font-mono animate-fade-in-up">
+  <div class="max-w-[900px] mx-auto px-4 sm:px-6 h-10 flex items-center justify-between text-xs">
+    <!-- Left: mode indicator -->
+    <div class="flex items-center gap-2">
+      <span class="bg-[#27c93f] text-[#000] px-2 py-0.5 font-bold">NORMAL</span>
+    </div>
+
+    <!-- Center: copyright -->
+    <div class="text-[#555] hidden sm:block">
       {t(locale, 'footer.copyright')}
-    </p>
+    </div>
+
+    <!-- Right: encoding info -->
+    <div class="text-[#555]">
+      utf-8[unix]
+    </div>
   </div>
 </footer>
